@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPLOYEE</title>
+    <link rel="stylesheet" href="emp.css">
+</head>
+<body> 
+    <header>
+        <div class="header">
+            <a class="logo">Hi EMPLOYEE!</a>
+            <div class="header-right">
+              <a class="active" href="emp.html">Home</a>    
+              <a href="details.html">Leave</a>
+              <a href="../login/login.html">Logout</a>
+            </div>
+          </div>
+    </header>
+    <br><br><br>
+    <div class="sick" id="dynamic-form">
+        <label for="leave">Select a Type</label>
+        <br><br>
+        <select name="leave" id="leave" onchange="showForm(this.value)">
+            <option value=""></option>
+            <option value="wf">Work From Home</option>
+            <option value="sl">Sick Leave</option>
+            <option value="cl">Casual Leave</option>
+        </select>
+    </div>
+
+    <script>
+        function showForm(option) {
+            var dynamicForm = document.getElementById("dynamic-form");
+            dynamicForm.innerHTML = ""; // Clear previous content
+            
+            if (option === "sl") {
+                dynamicForm.innerHTML = `
+                    From: <input type="date" id="input1" name="input1" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    To: <input type="date" id="input2" name="input2" required>
+                    <br><br>
+                    Reason:
+                    <br>
+                    <textarea id="input3" name="input3" rows="4" cols="50"></textarea>
+                    <br><br>
+                    <input type="submit" id="sl">
+
+                `;
+            } else if (option === "cl") {
+                dynamicForm.innerHTML = `   
+                    From: <input type="date" id="input1" name="input1" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    To: <input type="date" id="input2" name="input2" required>
+                    <br><br>
+                    Reason:
+                    <br>
+                    <textarea id="input3" name="input3" rows="4" cols="50"></textarea>
+                    <br><br>
+                    <input type="submit" id="cl">
+                `;
+            } else if(option === "wf") {
+                dynamicForm.innerHTML = `   
+                    From: <input type="date" id="input1" name="input1" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    To: <input type="date" id="input2" name="input2" required>
+                    <br><br>
+                    Reason:
+                    <br>
+                    <textarea id="input3" name="input3" rows="4" cols="50"></textarea>
+                    <br><br>
+                    <input type="submit" id="wf">
+                `;
+            }
+            dynamicForm.style.display = option ? "block" : "none"; // Show/hide the dynamic form
+            var today = new Date().toISOString().split('T')[0];
+                document.getElementById('input1').setAttribute('min', today);
+                document.getElementById('input2').setAttribute('min', today);
+        }
+    </script>
+</body>
+</html>

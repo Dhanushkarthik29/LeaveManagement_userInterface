@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="signup">
+        <form onsubmit="return validation()">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          
+            <label for="employee-id">Employee ID</label>
+            <input type="text" id="employee-id" name="employee-id" required>
+          
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                <option value="">Select Your Role...</option>
+                <option value="employee">Employee</option>
+                <option value="hr">HR</option>
+            </select>
+            <br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <br>
+        Already Have a Login?<a href="/login/login.html"> Click Me</a>
+    </div>
+    <script>
+        function validation(){
+            var name = document.getElementById("name").value;
+            var id = document.getElementById("employee-id").value;
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var role = document.getElementById("role").value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (phone.length !== 10) {
+                alert("Your Phone Number is incorrect!");
+                return false;
+            }
+            
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false; // Prevent form submission
+            } 
+            
+            if (password.length < 8) {
+                alert("Password Length must be greater than or equal to 8");
+                return false;
+            }
+            
+            if (role.charAt(0).toLowerCase() === 'e') {
+                window.location.href = "/login/login.html";
+            } else {
+                window.location.href = "/login/login.html";
+            }
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

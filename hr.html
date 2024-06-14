@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR</title>
+    <link rel="stylesheet" href="hr.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a class="logo">Hi HR!</a>
+            <div class="header-right">
+              <a class="active" href="./requests/requests.html">Request</a>
+              <a href="./lop/lop.html">LOP</a>
+              <a href="../login/login.html">Logout</a>
+            </div>
+          </div>
+    </header>
+    <br><br><br>
+    <div class="sick" id="dynamic-form">
+        <label for="leave">Select a Type</label>
+        <br><br>
+        <select name="leave" id="leave" onchange="showForm(this.value)">
+            <option value=""></option>
+            <option value="au">Add User..</option>
+            <option value="ru">Remove User..</option>
+        </select>
+    </div>
+    <script>
+      function showForm(option) {
+          var dynamicForm = document.getElementById("dynamic-form");
+          dynamicForm.innerHTML = ""; // Clear previous content
+
+          if (option === "au") {
+              dynamicForm.innerHTML = `
+                  Employee Name:&nbsp&nbsp&nbsp<input type="name" id="input1" name="input1" required>&nbsp&nbsp&nbsp
+                  <br><br>
+                  Employee Email:&nbsp<input type="email" id="input2" name="input2" required>
+                  <br><br>
+                  Employee Id:&nbsp&nbsp<input type="number" id="input2" name="input2" required>
+                  <br><br>
+                  <label for="role">Role:&nbsp</label>
+                  <select id="role" name="role" required>
+                  <option value="">Select a role</option>
+                  <option value="employee">Employee</option>
+                  <option value="hr">HR</option>
+                  </select>
+                  <br><br>
+                  <input type="submit" value="Add Employee" id="au">
+              `;
+          } else if (option === "ru") {
+              dynamicForm.innerHTML = `   
+                  Employee Id:&nbsp<input type="number" id="input1" name="input1" required>
+                  <br><br>
+                  <input type="submit" value="Remove Employee" id="cl">
+              `;
+          dynamicForm.style.display = option ? "block" : "none"; // Show/hide the dynamic form
+      }
+    }
+  </script>
+</body>
+</html>
